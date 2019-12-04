@@ -4,6 +4,8 @@
 (def filename "input2.txt")
 (def original-input (int-array (map #(Integer/parseInt %) (-> filename slurp (str/split #",")))))
 
+(def day-2-value 19690720)
+
 (defn solve-prob [noun verb]
   (def input (int-array original-input))
   (aset input 1 noun)
@@ -17,8 +19,10 @@
 
   (nth input 0))
 
+(println "Part 1 solution: " (solve-prob 12 2))
+
 (loop [noun 0]
   (loop [verb 0]
-    (if (= (solve-prob noun verb) 19690720) (println (+ (* 100 noun) verb)))
+    (if (= (solve-prob noun verb) day-2-value) (println "Part 2 solution: " (+ (* 100 noun) verb)))
     (when (< verb 99) (recur (inc verb))))
   (when (< noun 99) (recur (inc noun))))
