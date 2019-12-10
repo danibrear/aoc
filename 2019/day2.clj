@@ -23,6 +23,6 @@
 
 (loop [noun 0]
   (loop [verb 0]
-    (if (= (solve-prob noun verb) day-2-value) (println "Part 2 solution: " (+ (* 100 noun) verb)))
+    (when (= (solve-prob noun verb) day-2-value) (println "Part 2 solution: " (+ (* 100 noun) verb)))
     (when (< verb 99) (recur (inc verb))))
   (when (< noun 99) (recur (inc noun))))
