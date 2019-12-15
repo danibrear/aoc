@@ -3,9 +3,8 @@ import copy
 with open('input5.txt', 'r') as f:
   orig_program = list(map(int, f.readlines()[0].split(',')))
 
-POS_ARG = 0
-
 def find_answer(orig_program, inp):
+  POS_ARG = 0
 
   program = copy.deepcopy(orig_program)
 
@@ -15,6 +14,9 @@ def find_answer(orig_program, inp):
     return program[index + pos]
 
   index = 0
+
+  input_index = 0
+  ret_val = 0
   while index < len(program):
     opcode = program[index]
     instruction = opcode % 100
@@ -53,10 +55,12 @@ def find_answer(orig_program, inp):
       inc = 4
     elif (int(instruction) == 3):
       pos = program[index + 1]
-      program[pos] = inp
+      program[pos] = inp[input_index]
+      input_index += 1
       inc = 2
     elif (int(instruction) == 4):
-      print('Output:', program[program[index + 1]])
+      # print('Output:', program[program[index + 1]])
+      ret_val = program[program[index + 1]]
       inc = 2
     elif (int(instruction) == 5): # jump-if-true
       first = get_arg(mode1, index, 1)
@@ -103,11 +107,10 @@ def find_answer(orig_program, inp):
 
       inc = 4
     elif (int(instruction) == 99):
-      break
+      return ret_val
     index += inc  
 
-print('Part1:')
-find_answer(orig_program, 1)
+if __name__ == '__main__':
+  print('Part1:', find_answer(orig_program, [1]))
 
-print('Part2:')
-find_answer(orig_program, 5)
+  print('Part2:', find_answer(orig_program, [5]))
