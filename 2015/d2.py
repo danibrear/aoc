@@ -18,14 +18,30 @@ def part1(lines):
 
 
 def part2(lines):
-    pass
+    total = 0
+    for line in lines:
+        l, w, h = line.split('x')
+        l, w, h = int(l), int(w), int(h)
+        needed = 0
+
+        if max([l, w, h]) == h:
+            needed += (2 * l + 2 * w)
+        elif max([l, w, h]) == w:
+            needed += (2 * l + 2 * h)
+        elif max([l, w, h]) == l:
+            needed += (2*w + 2*h)
+
+        needed += (l*w*h)
+
+        total += needed
+    print(total)
 
 
 with open('./d2.txt', 'r') as file:
 
     lines = file.readlines()
 
-    lines = map(lambda x: x.replace('\n', ''), lines)
+    lines = list(map(lambda x: x.replace('\n', ''), lines))
 
     part1(lines)
     part2(lines)
