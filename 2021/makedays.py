@@ -1,4 +1,4 @@
-template = f'''
+template = '''
 def part1(lines):
     for line in lines:
         pass
@@ -20,9 +20,10 @@ with open('./d__DAY__.txt', 'r') as f:
 
 for x in range(3, 26):
 
-    with open(f"d{x}.py", "w") as f:
-        f.write(template.replace('__DAY__', str(x)))
-    with open(f"d{x}.txt", "w") as f:
+    dayStr = str(x).zfill(2)
+    with open(f"d{dayStr}.py", "w") as f:
+        f.write(template.replace('__DAY__', dayStr))
+    with open(f"d{dayStr}.txt", "w") as f:
         f.write("")
-    with open(f"d{x}-test.txt", "w") as f:
+    with open(f"d{dayStr}-test.txt", "w") as f:
         f.write("")
