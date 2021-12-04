@@ -1,3 +1,6 @@
+import re
+
+
 def check_board(board):
 
     for row in board:
@@ -27,7 +30,7 @@ def calc_board(board, marked_board):
 
 
 def part1(lines):
-    numbers = lines[0].replace('\n', '').split(',')
+    numbers = lines[0].split(',')
 
     boards = []
 
@@ -36,10 +39,7 @@ def part1(lines):
     marked_boards = []
     marked_board = []
     for line in lines[2:]:
-        line = line.replace('\n', '')
-        line = line.replace(r'  ', ' ')
-        if len(line) > 0 and line[0] == ' ':
-            line = line[1:]
+        line = re.sub(r'\s+', ' ', line).strip()
         if len(line) == 0:
             boards.append(board)
             board = []
@@ -70,7 +70,7 @@ def part1(lines):
 
 
 def part2(lines):
-    numbers = lines[0].replace('\n', '').split(',')
+    numbers = lines[0].split(',')
 
     boards = []
 
@@ -79,10 +79,7 @@ def part2(lines):
     marked_boards = []
     marked_board = []
     for line in lines[2:]:
-        line = line.replace('\n', '')
-        line = line.replace(r'  ', ' ')
-        if len(line) > 0 and line[0] == ' ':
-            line = line[1:]
+        line = re.sub(r'\s+', ' ', line).strip()
         if len(line) == 0:
             boards.append(board)
             board = []
@@ -121,5 +118,9 @@ with open('./d04.txt', 'r') as f:
 
     lines = f.readlines()
 
+    lines = list(map(lambda x: x.replace('\n', ''), lines))
+
+    print('part 1 solution: 58838')
     part1(lines)
+    print('part 2 solution: 6256')
     part2(lines)
