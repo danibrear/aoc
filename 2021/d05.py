@@ -1,6 +1,5 @@
 
 def part1(lines):
-
     points = []
     maxX = 0
     maxY = 0
@@ -25,7 +24,7 @@ def part1(lines):
             end = max(y1, y2)
             for y in range(start, end+1):
                 grid[y][x1] += 1
-        if y1 == y2:
+        elif y1 == y2:
             start = min(x1, x2)
             end = max(x1, x2)
             for x in range(start, end+1):
@@ -37,6 +36,8 @@ def part1(lines):
             if val > 1:
                 count += 1
     print(count)
+
+    return count
 
 
 def part2(lines):
@@ -64,7 +65,6 @@ def part2(lines):
             end = max(y1, y2)
             for y in range(start, end+1):
                 grid[y][x1] += 1
-
         elif y1 == y2:
             start = min(x1, x2)
             end = max(x1, x2)
@@ -89,6 +89,7 @@ def part2(lines):
     #     print(' '.join([str(x) if x > 0 else '.' for x in row]))
 
     print(count)
+    return count
 
 
 with open('./d05.txt', 'r') as f:
@@ -96,5 +97,7 @@ with open('./d05.txt', 'r') as f:
     lines = f.readlines()
     lines = list(map(lambda x: x.replace('\n', ''), lines))
 
+    print('Part 1 should be 6005:')
     part1(lines)
+    print('Part 2 should be 23864:')
     part2(lines)
