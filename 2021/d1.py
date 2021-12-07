@@ -8,8 +8,6 @@ def part1(lines):
         last = this
     print(incs)
 
-    # print(sum([x < y for x, y in zip(lines[:-1], lines[1:])]))
-
 
 def part2(lines):
     start = 0

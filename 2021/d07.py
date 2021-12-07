@@ -15,10 +15,16 @@ def part1(lines):
     print(sm)
 
 
+memed = {}
+
+
 def fact(n):
     s = 0
+    if (n in memed):
+        return memed[n]
     for i in range(1, n+1):
         s += i
+        memed[i] = s
     return s
 
 
@@ -28,7 +34,7 @@ def part2(lines):
     ps = list(map(int, lines[0].split(',')))
     ps = sorted(ps)
     m = len(ps)//2
-    medians = ps[m-150:m+150]
+    medians = ps[m-200:m+200]
 
     for me in medians:
         fuel = 0
