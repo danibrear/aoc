@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def part1(lines):
     ps = list(map(int, lines[0].split(',')))
     ps = sorted(ps)
@@ -53,7 +56,9 @@ with open('./d07.txt', 'r') as f:
     lines = f.readlines()
     lines = list(map(lambda x: x.replace('\n', ''), lines))
 
+    start = datetime.now()
     print('Part 1: 335271:')
     part1(lines)
     print('Part 2: 95851339:')
     part2(lines)
+    print('Time: {} seconds'.format((datetime.now() - start).total_seconds()))
