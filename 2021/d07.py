@@ -18,17 +18,8 @@ def part1(lines):
     print(sm)
 
 
-memed = {}
-
-
-def fact(n):
-    s = 0
-    if (n in memed):
-        return memed[n]
-    for i in range(1, n+1):
-        s += i
-        memed[i] = s
-    return s
+def calc(n):
+    return (n * (n+1))//2
 
 
 def part2(lines):
@@ -42,7 +33,7 @@ def part2(lines):
     for me in medians:
         fuel = 0
         for x in ps:
-            fuel += fact(abs(x - me))
+            fuel += calc(abs(x - me))
         if fuel < smallest:
             smallest = fuel
 
