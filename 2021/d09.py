@@ -6,36 +6,16 @@ def part1(lines):
     mins = []
     for i in range(len(mat)):
         for j in range(len(mat[i])):
-            if i == 0:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i+1][j]:
-                        mins.append(mat[i][j])
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i+1][j]:
-                        mins.append(mat[i][j])
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i+1][j] and mat[i][j] < mat[i][j+1]:
-                        mins.append(mat[i][j])
-            elif i == len(mat)-1:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i-1][j]:
-                        mins.append(mat[i][j])
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j]:
-                        mins.append(mat[i][j])
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i][j+1]:
-                        mins.append(mat[i][j])
-            else:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i+1][j]:
-                        mins.append(mat[i][j])
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i+1][j]:
-                        mins.append(mat[i][j])
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i+1][j] and mat[i][j] < mat[i-1][j]:
-                        mins.append(mat[i][j])
+            i_s = [i + x for x in range(-1, 2)]
+            j_s = [j + x for x in range(-1, 2)]
+            pos = [(_i, _j) for _i in i_s for _j in j_s]
+            pos = list(filter(lambda p: p[0] >= 0 and p[1] >= 0 and p[0] < len(
+                mat) and p[1] < len(mat[0]), pos))
+            pos = list(filter(lambda p: p != (i, j), pos))
+            pos = list(filter(lambda p: p[0] == i or p[1] == j, pos))
+            a = all([mat[i][j] < mat[p[0]][p[1]] for p in pos])
+            if a:
+                mins.append(mat[i][j])
 
     return sum([m + 1 for m in mins])
 
@@ -47,36 +27,16 @@ def part2(lines):
     mins = []
     for i in range(len(mat)):
         for j in range(len(mat[i])):
-            if i == 0:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i+1][j]:
-                        mins.append((i, j))
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i+1][j]:
-                        mins.append((i, j))
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i+1][j] and mat[i][j] < mat[i][j+1]:
-                        mins.append((i, j))
-            elif i == len(mat)-1:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i-1][j]:
-                        mins.append((i, j))
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j]:
-                        mins.append((i, j))
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i][j+1]:
-                        mins.append((i, j))
-            else:
-                if j == 0:
-                    if mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i+1][j]:
-                        mins.append((i, j))
-                elif j == len(mat[i])-1:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i+1][j]:
-                        mins.append((i, j))
-                else:
-                    if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i+1][j] and mat[i][j] < mat[i-1][j]:
-                        mins.append((i, j))
+            i_s = [i + x for x in range(-1, 2)]
+            j_s = [j + x for x in range(-1, 2)]
+            pos = [(_i, _j) for _i in i_s for _j in j_s]
+            pos = list(filter(lambda p: p[0] >= 0 and p[1] >= 0 and p[0] < len(
+                mat) and p[1] < len(mat[0]), pos))
+            pos = list(filter(lambda p: p != (i, j), pos))
+            pos = list(filter(lambda p: p[0] == i or p[1] == j, pos))
+            a = all([mat[i][j] < mat[p[0]][p[1]] for p in pos])
+            if a:
+                mins.append((i, j))
 
     seen = set()
     basins = {}
