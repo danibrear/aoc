@@ -58,7 +58,7 @@ def part2(lines):
             if (i, j) in seen:
                 continue
             seen.add((i, j))
-            if (i, j) in tosee or mat[i][j] == 9:
+            if mat[i][j] == 9:
                 continue
             if i > 0 and (i-1, j) not in seen and (i-1, j) not in tosee:
                 tosee.append((i-1, j))
