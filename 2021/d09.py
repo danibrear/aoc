@@ -37,7 +37,7 @@ def part1(lines):
                     if mat[i][j] < mat[i][j-1] and mat[i][j] < mat[i-1][j] and mat[i][j] < mat[i][j+1] and mat[i][j] < mat[i+1][j] and mat[i][j] < mat[i-1][j]:
                         mins.append(mat[i][j])
 
-    print(sum([m + 1 for m in mins]))
+    return sum([m + 1 for m in mins])
 
 
 def part2(lines):
@@ -101,17 +101,13 @@ def part2(lines):
             if (i, j) in tosee or mat[i][j] == 9:
                 continue
             if i > 0 and (i-1, j) not in seen and (i-1, j) not in tosee:
-                if mat[i-1][j] < 9:
-                    tosee.append((i-1, j))
+                tosee.append((i-1, j))
             if i < len(mat)-1 and (i+1, j) not in seen and (i+1, j) not in tosee:
-                if mat[i+1][j] < 9:
-                    tosee.append((i+1, j))
+                tosee.append((i+1, j))
             if j > 0 and (i, j-1) not in seen and (i, j-1) not in tosee:
-                if mat[i][j-1] < 9:
-                    tosee.append((i, j-1))
+                tosee.append((i, j-1))
             if j < len(mat[i])-1 and (i, j+1) not in seen and (i, j+1) not in tosee:
-                if mat[i][j+1] < 9:
-                    tosee.append((i, j+1))
+                tosee.append((i, j+1))
             basins[m] += 1
 
     x = 1
@@ -119,7 +115,7 @@ def part2(lines):
     vals = sorted(vals)
     for b in vals[-3:]:
         x *= b
-    print(x)
+    return x
 
 
 with open('./d09.txt', 'r') as f:
@@ -127,5 +123,5 @@ with open('./d09.txt', 'r') as f:
     lines = f.readlines()
     lines = list(map(lambda x: x.replace('\n', ''), lines))
 
-    part1(lines)
-    part2(lines)
+    print('Part 1 correct: [566] {}'.format(part1(lines)))
+    print('Part 2 correct: [891684] {}'.format(part2(lines)))
