@@ -77,12 +77,12 @@ def part2(lines):
             elif c == '>':
                 d = stack.pop()
 
-        rest = []
+        ending = []
         while len(stack) > 0:
             d = stack.pop()
-            rest.append(d)
+            ending.append(d)
         score = 0
-        for c in rest:
+        for c in ending:
             score *= 5
             if c == '(':
                 score += 1
