@@ -1,19 +1,63 @@
+def flash(octi, i, j, flashed):
+    i_s = [i + x for x in range(-1, 2)]
+    j_s = [j + x for x in range(-1, 2)]
+    pos = [(_i, _j) for _i in i_s for _j in j_s]
+    pos = list(filter(lambda p: p[0] >= 0 and p[1] >= 0 and p[0] < len(
+        octi) and p[1] < len(octi[0]), pos))
+    pos = list(filter(lambda p: p != (i, j), pos))
+    for (ni, nj) in pos:
+        if (ni, nj) not in flashed:
+            octi[ni][nj] += 1
+            if octi[ni][nj] > 9:
+                flashed.add((ni, nj))
+                octi[ni][nj] = 0
+                flash(octi, ni, nj, flashed)
 
-def part1(lines):
-    for line in lines:
-        pass
+
+def step(octi):
+    flashed = set()
+    for i in range(len(octi)):
+        for j in range(len(octi[i])):
+            octi[i][j] += 1
+            if octi[i][j] > 9:
+                flashed.add((i, j))
+                octi[i][j] = 0
+                flash(octi, i, j, flashed)
+    for (i, j) in flashed:
+        octi[i][j] = 0
+    return len(flashed)
 
 
-def part2(lines):
-    for line in lines:
-        pass
+def part1(octi):
+    total = 0
+    for _ in range(100):
+        total += step(octi)
+    return total
 
 
-with open('./d11.txt', 'r') as f:
+def part2(octi):
+    stepno = 0
+    while True:
+        stepno += 1
+        if step(octi) == 100:
+            break
 
-    lines = f.readlines()
-    lines = list(map(lambda x: x.replace('\n', ''), lines))
+    return stepno
 
-    part1(lines)
-    part2(lines)
 
+def main():
+    with open("d11.txt", "r") as f:
+        lines = f.readlines()
+        lines = list(map(lambda x: x.replace('\n', ''), lines))
+        lines = list(map(lambda x: list(map(int, x)), lines))
+        print(f"Part 1 [1785]: {part1(lines)}")
+
+    with open("d11.txt", "r") as f:
+        lines = f.readlines()
+        lines = list(map(lambda x: x.replace('\n', ''), lines))
+        lines = list(map(lambda x: list(map(int, x)), lines))
+
+        print(f"Part 2 [354]: {part2(lines)}")
+
+
+main()
