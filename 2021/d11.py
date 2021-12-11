@@ -1,3 +1,6 @@
+import copy
+
+
 def flash(octi, i, j, flashed):
     i_s = [i + x for x in range(-1, 2)]
     j_s = [j + x for x in range(-1, 2)]
@@ -51,8 +54,9 @@ def main():
         lines = list(map(lambda x: x.replace('\n', ''), lines))
         lines = list(map(lambda x: list(map(int, x)), lines))
 
-        l1 = [[l for l in line] for line in lines]
-        l2 = [[l for l in line] for line in lines]
+        l1 = copy.deepcopy(lines)
+        l2 = copy.deepcopy(lines)
+
         print(f"Part 1 [1785]: {part1(l1)}")
         print(f"Part 2 [354]: {part2(l2)}")
 
