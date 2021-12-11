@@ -28,18 +28,18 @@ def step(octi):
     return len(flashed)
 
 
-def part1(octi):
+def part1(octi1):
     total = 0
     for _ in range(100):
-        total += step(octi)
+        total += step(octi1)
     return total
 
 
-def part2(octi):
+def part2(octi2):
     stepno = 0
     while True:
         stepno += 1
-        if step(octi) == 100:
+        if step(octi2) == 100:
             break
 
     return stepno
@@ -52,6 +52,8 @@ def main():
         lines = list(map(lambda x: list(map(int, x)), lines))
         print(f"Part 1 [1785]: {part1(lines)}")
 
+    # for some reason there is some memory leaking into the part2
+    # so this is resets the lines.
     with open("d11.txt", "r") as f:
         lines = f.readlines()
         lines = list(map(lambda x: x.replace('\n', ''), lines))
