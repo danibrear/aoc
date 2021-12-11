@@ -6,26 +6,22 @@ def part1(lines):
     stack = deque()
     for line in lines:
         for c in line:
-            if c == '{' or c == '<' or c == '(' or c == '[':
+            if c in ['{', '<', '(', '[']:
                 stack.append(c)
             elif c == ')':
-                d = stack.pop()
-                if d != '(':
+                if stack.pop() != '(':
                     score += 3
                     break
             elif c == ']':
-                d = stack.pop()
-                if d != '[':
+                if stack.pop() != '[':
                     score += 57
                     break
             elif c == '}':
-                d = stack.pop()
-                if d != '{':
+                if stack.pop() != '{':
                     score += 1197
                     break
             elif c == '>':
-                d = stack.pop()
-                if d != '<':
+                if stack.pop() != '<':
                     score += 25137
                     break
     print(score)
@@ -33,56 +29,52 @@ def part1(lines):
 
 def part2(lines):
     stack = deque()
-    rest = []
+    incompletes = []
     for line in lines:
         failed = False
         for c in line:
-            if c == '{' or c == '<' or c == '(' or c == '[':
+            if c in ['{', '<', '(', '[']:
                 stack.append(c)
             elif c == ')':
-                d = stack.pop()
-                if d != '(':
+                if stack.pop() != '(':
                     failed = True
                     break
             elif c == ']':
-                d = stack.pop()
-                if d != '[':
+                if stack.pop() != '[':
                     failed = True
                     break
             elif c == '}':
-                d = stack.pop()
-                if d != '{':
+                if stack.pop() != '{':
                     failed = True
                     break
             elif c == '>':
-                d = stack.pop()
-                if d != '<':
+                if stack.pop() != '<':
                     failed = True
                     break
         if not failed:
-            rest.append(line)
+            incompletes.append(line)
 
     stack = deque()
     scores = []
-    for line in rest:
+    for line in incompletes:
         for c in line:
             if c == '{' or c == '<' or c == '(' or c == '[':
                 stack.append(c)
             elif c == ')':
-                d = stack.pop()
+                stack.pop()
             elif c == ']':
-                d = stack.pop()
+                stack.pop()
             elif c == '}':
-                d = stack.pop()
+                stack.pop()
             elif c == '>':
-                d = stack.pop()
+                stack.pop()
 
-        ending = []
+        leftover = []
         while len(stack) > 0:
             d = stack.pop()
-            ending.append(d)
+            leftover.append(d)
         score = 0
-        for c in ending:
+        for c in leftover:
             score *= 5
             if c == '(':
                 score += 1
