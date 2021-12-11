@@ -50,16 +50,11 @@ def main():
         lines = f.readlines()
         lines = list(map(lambda x: x.replace('\n', ''), lines))
         lines = list(map(lambda x: list(map(int, x)), lines))
-        print(f"Part 1 [1785]: {part1(lines)}")
 
-    # for some reason there is some memory leaking into the part2
-    # so this is resets the lines.
-    with open("d11.txt", "r") as f:
-        lines = f.readlines()
-        lines = list(map(lambda x: x.replace('\n', ''), lines))
-        lines = list(map(lambda x: list(map(int, x)), lines))
-
-        print(f"Part 2 [354]: {part2(lines)}")
+        l1 = [[l for l in line] for line in lines]
+        l2 = [[l for l in line] for line in lines]
+        print(f"Part 1 [1785]: {part1(l1)}")
+        print(f"Part 2 [354]: {part2(l2)}")
 
 
 main()
