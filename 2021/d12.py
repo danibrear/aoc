@@ -14,14 +14,13 @@ def part1(lines):
 
     p2end = []
 
-    def find(paths, src, dest, curr):
-        if src == dest:
+    def find(paths, src, end, curr):
+        if src == end:
             p2end.append(curr)
-            return 1
+            return
         for p in paths[src]:
             if p not in curr or p.isupper():
-                find(paths, p, dest, curr + [p])
-        return 0
+                find(paths, p, end, curr + [p])
 
     find(paths, 'start', 'end', ['start'])
 
@@ -41,18 +40,17 @@ def part2(lines):
 
     p2end = []
 
-    def find(paths, src, dest, curr, cansmall):
-        if src == dest:
+    def find(paths, src, end, curr, cansmall):
+        if src == end:
             p2end.append(curr)
-            return 1
+            return
         for p in paths[src]:
             if p == 'start':
                 continue
             if p in curr and p.islower() and curr.count(p) == 1 and cansmall:
-                find(paths, p, dest, curr + [p], False)
+                find(paths, p, end, curr + [p], False)
             elif p not in curr or p.isupper():
-                find(paths, p, dest, curr + [p], cansmall)
-        return 0
+                find(paths, p, end, curr + [p], cansmall)
 
     find(paths, 'start', 'end', ['start'], True)
 
