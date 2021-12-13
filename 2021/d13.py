@@ -1,16 +1,16 @@
 import re
 
 
-def fold(dir, loc, points):
+def fold(direction, loc, points):
     newpoints = set()
 
     for (x, y) in points:
-        if dir == 'x':
+        if direction == 'x':
             if x > loc:
                 newpoints.add(((2 * loc) - x, y))
             else:
                 newpoints.add((x, y))
-        elif dir == 'y':
+        elif direction == 'y':
             if y > loc:
                 newpoints.add((x, (2 * loc) - y))
             else:
@@ -35,8 +35,8 @@ def part1(lines):
     for line in lines:
         if len(line) > 0 and line[0] == 'f':
             l = line.split('fold along ')[1]
-            dir, loc = l.split('=')
-            folds.append((dir, int(loc)))
+            direction, loc = l.split('=')
+            folds.append((direction, int(loc)))
 
     print(len(fold(folds[0][0], folds[0][1], points)))
 
@@ -58,8 +58,8 @@ def part2(lines):
     for line in lines:
         if len(line) > 0 and line[0] == 'f':
             l = line.split('fold along ')[1]
-            dir, loc = l.split('=')
-            folds.append((dir, int(loc)))
+            direction, loc = l.split('=')
+            folds.append((direction, int(loc)))
 
     for f in folds:
         points = fold(f[0], f[1], points)
