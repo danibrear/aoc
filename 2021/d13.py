@@ -1,6 +1,3 @@
-import re
-
-
 def fold(direction, loc, points):
     newpoints = set()
 
