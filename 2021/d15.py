@@ -68,7 +68,7 @@ def part1(lines):
 
 def incmap(m):
     mult = 5
-    nm = [[0 for x in range(len(m[0]) * mult)] for y in range(len(m) * mult)]
+    nm = [[0 for _ in range(len(m[0]) * mult)] for _ in range(len(m) * mult)]
     for r in range(len(m) * mult):
         xr = r // len(m)
         for c in range(len(m[0]) * mult):
