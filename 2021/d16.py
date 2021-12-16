@@ -23,8 +23,7 @@ htob = {
 def btod(binary):
 
     binary = int(binary)
-    binary1 = binary
-    decimal, i, n = 0, 0, 0
+    decimal, i = 0, 0
     while(binary != 0):
         dec = binary % 10
         decimal = decimal + dec * pow(2, i)
@@ -49,8 +48,6 @@ def headers(bl):
 
 
 def lit(bl):
-    (v, t, l) = headers(bl)
-    nosp = 0
     at = 6
     bits = []
     while bl[at] != '0' and at < len(bl):
@@ -66,7 +63,18 @@ def lit(bl):
 versions = []
 
 
-def op1(bl):
+def part1(lines):
+    line = lines[0]
+    bl = []
+    for l in line:
+        bl.append(htob[l])
+    bl = "".join(bl)
+    op(bl)
+
+    print(sum(versions))
+
+
+def op(bl):
     (v, t, l) = headers(bl)
     versions.append(v)
     if t == 4:
@@ -81,7 +89,7 @@ def op1(bl):
             nosp = btod(bl[at:at+11])
             at += 11
             for _ in range(nosp):
-                (v, a) = op1(bl[at:])
+                (v, a) = op(bl[at:])
                 values.append(v)
                 at += a
         elif l == 0:
@@ -89,46 +97,7 @@ def op1(bl):
             at += 15
             subpacket = bl[at:at+nosp]
             while start0 < len(subpacket):
-                (v, a) = op1(subpacket[start0:])
-                values.append(v)
-                start0 += a
-        return (values, at + start0)
-
-
-def part1(lines):
-    line = lines[0]
-    bl = []
-    for l in line:
-        bl.append(htob[l])
-    bl = "".join(bl)
-    op1(bl)
-
-    print(sum(versions))
-
-
-def op2(bl):
-    (v, t, l) = headers(bl)
-    if t == 4:
-        (v, a) = lit(bl)
-        return (v, a)
-    else:
-        nosp = 0
-        at = 7
-        start0 = 0
-        values = []
-        if l == 1:
-            nosp = btod(bl[at:at+11])
-            at += 11
-            for _ in range(nosp):
-                (v, a) = op2(bl[at:])
-                values.append(v)
-                at += a
-        elif l == 0:
-            nosp = btod(bl[at:at+15])
-            at += 15
-            subpacket = bl[at:at+nosp]
-            while start0 < len(subpacket):
-                (v, a) = op2(subpacket[start0:])
+                (v, a) = op(subpacket[start0:])
                 values.append(v)
                 start0 += a
 
@@ -155,7 +124,7 @@ def part2(lines):
     for l in line:
         bl.append(htob[l])
     bl = "".join(bl)
-    (v, _) = op2(bl)
+    (v, _) = op(bl)
 
     print(v)
 
