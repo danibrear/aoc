@@ -167,5 +167,5 @@ with open('./d16.txt', 'r') as f:
 
     print('Part 1: [879]')
     part1(lines)
-    print('Part 2: []')
+    print('Part 2: [539051801941]')
     part2(lines)
