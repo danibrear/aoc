@@ -110,9 +110,9 @@ with open('./d15.txt', 'r') as f:
     print('Part 1 took: {}'.format(datetime.now() - start))
     p2start = datetime.now()
     if INCLUDE_H:
-        print('Part 2 with H: [2874]')
+        print('Part 2 with H: [2874] (usually takes ~26s)')
     else:
-        print('Part 2 with No H: [2874]')
+        print('Part 2 with No H: [2874] (usually takes ~30s)')
     part2(lines)
     print('Part 2 took: {}'.format(datetime.now() - p2start))
     print('Total: [{}]'.format(datetime.now() - start))
