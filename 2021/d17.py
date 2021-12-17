@@ -39,8 +39,7 @@ def part1():
     X = realX
     Y = realY
 
-    print('Y', Y)
-    for x in range(0, 300):
+    for x in range(0, X[0]):
         for y in range(0, abs(Y[0])):
             vel = [x, y]
             pos = [0, 0]
@@ -77,7 +76,7 @@ def part2():
     X = realX
     Y = realY
 
-    for x in range(0, X[1] * 2):
+    for x in range(0, X[1] + 1):
         for y in range(-abs(Y[0]), abs(Y[0])):
             vel = [x, y]
             iv = [x, y]
