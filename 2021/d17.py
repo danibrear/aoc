@@ -104,5 +104,5 @@ def part2():
     print('hits:', len(vels))
 
 
-# part1()
+part1()
 part2()
