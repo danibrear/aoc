@@ -39,8 +39,9 @@ def part1():
     X = realX
     Y = realY
 
-    for x in range(0, 400):
-        for y in range(0, 400):
+    print('Y', Y)
+    for x in range(0, 300):
+        for y in range(0, abs(Y[0])):
             vel = [x, y]
             pos = [0, 0]
             mh = float('-inf')
@@ -57,7 +58,7 @@ def part1():
                 counter += 1
                 if intarget(pos, X, Y):
                     hit = True
-                    print("HIT:", counter, pos, mh)
+                    # print("HIT:", counter, pos, mh)
                     break
                 if missed(pos, X, Y):
                     break
@@ -76,8 +77,8 @@ def part2():
     X = realX
     Y = realY
 
-    for x in range(0, 400):
-        for y in range(-200, 200):
+    for x in range(0, X[1] * 2):
+        for y in range(-abs(Y[0]), abs(Y[0])):
             vel = [x, y]
             iv = [x, y]
             pos = [0, 0]
@@ -95,7 +96,7 @@ def part2():
                 counter += 1
                 if intarget(pos, X, Y):
                     hit = True
-                    print("HIT:", counter, pos, mh)
+                    # print("HIT:", counter, pos, mh)
                     break
                 if missed(pos, X, Y):
                     break
@@ -104,5 +105,7 @@ def part2():
     print('hits:', len(vels))
 
 
+print('Part 1: [6555]')
 part1()
+print('Part 2: [4973]')
 part2()
