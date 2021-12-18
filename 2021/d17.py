@@ -10,7 +10,7 @@ def parts1and2():
 
     X = realX
     Y = realY
-    maxoverall = float('-inf')
+    maxoverall = 0
 
     vs = 0
 
@@ -18,7 +18,7 @@ def parts1and2():
         for y in range(-abs(Y[0]), abs(Y[0])):
             vx = x
             vy = y
-            mh = float('-inf')
+            mh = 0
             px = 0
             py = 0
             hit = False
