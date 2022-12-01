@@ -9,7 +9,6 @@ def part1(lines):
             total += int(line)
     maxsofar = max(maxsofar, total)
     print(maxsofar)
-    return maxsofar
 
 
 def part2(lines):
@@ -26,7 +25,6 @@ def part2(lines):
     maxes = sorted(maxes, reverse=True)
     maxes = maxes[0:3]
     print(sum(maxes))
-    return maxsofar
 
 
 with open('./day1.txt', 'r') as f:
