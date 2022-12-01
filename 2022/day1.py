@@ -11,8 +11,8 @@ def part1(lines):
     print(maxsofar)
     return maxsofar
 
+
 def part2(lines):
-    maxsofar = 0
     total = 0
     maxes = []
     for line in lines:
