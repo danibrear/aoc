@@ -33,8 +33,8 @@ def part1(lines):
     for i in scanner0:
         beacons[i] = 1
 
-    print(beacons)
-    print('--' * 20)
+    # print(beacons)
+    # print('--' * 20)
 
     scanner1 = scanners['1']
     for i in scanner1:
