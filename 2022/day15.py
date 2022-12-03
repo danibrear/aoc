@@ -1,4 +1,3 @@
-
 from utils import aslist, splitlines, ingroups, getday, getpath
 
 def part1(lines):
