@@ -1,18 +1,17 @@
+from utils import aslist, splitlines, ingroups
 
-from utils import aslist, splitlines, ingroups, getday, getpath
 
 def part1(lines):
     for line in lines:
         pass
+
 
 def part2(lines):
     for line in lines:
         pass
 
 
-day = getday(__file__)
-path = getpath(__file__)
-with open('\{0\}/\{1\}.txt'.format(path, day), 'r') as f:
+with open('day13.txt', 'r') as f:
 
     lines = f.readlines()
 

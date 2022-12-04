@@ -52,7 +52,6 @@ def part2(lines):
 with open('day3.txt', 'r') as f:
 
     lines = f.readlines()
-
     lines = aslist(lines)
 
     part1(lines)

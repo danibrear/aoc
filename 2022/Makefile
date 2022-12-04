@@ -1,3 +1,6 @@
+watch:
+	python watch.py
+
 today:
 	python today.py
 

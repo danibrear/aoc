@@ -9,6 +9,6 @@ for x in range(1, 32):
         print('skipping', day)
         continue
     with open('{0}.py'.format(day), 'w') as f:
-        f.write(template)
+        f.write(template.replace('{{DAY}}', day))
     with open('{0}.txt'.format(day), 'w') as f:
         f.write('')
