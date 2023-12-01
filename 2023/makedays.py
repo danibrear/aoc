@@ -5,11 +5,11 @@ with open('./_template.py', 'r') as f:
 
 for x in range(1, 32):
     day = 'day{0}'.format(x)
-    template.replace('*DAY*', str(x))
+    toWrite = template.replace('*DAY*', day)
     if exists(day + '.py') or exists(day + '.txt'):
         print('skipping', day)
         continue
     with open('{0}.py'.format(day), 'w') as f:
-        f.write(template)
+        f.write(toWrite)
     with open('{0}.txt'.format(day), 'w') as f:
         f.write('')

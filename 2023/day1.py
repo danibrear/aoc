@@ -1,6 +1,10 @@
 from utils import aslist, splitlines, ingroups, getday, getpath
 import re
 
+from tools import minWithIndex
+
+print(minWithIndex([100, 50, 25, 70, 300]))
+
 def part1(lines):
     total = 0
     for line in lines:
@@ -39,8 +43,7 @@ def part2(lines):
 
 day = getday(__file__)
 path = getpath(__file__)
-print('path', path)
-with open('./{}/{}.txt'.format(path, day), 'r') as f:
+with open('{}/day1.txt'.format(path), 'r') as f:
 
     lines = f.readlines()
 
