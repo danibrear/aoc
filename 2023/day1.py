@@ -13,28 +13,14 @@ def part1(lines):
     for line in lines:
         first = 0
         second = 0
+        numbers = []
         for i in range(len(line)):
-            done = False
-            for (val, num) in enumerate(arr):
+            for num in arr:
                 if line[i:].startswith(num):
-                    first = num
-                    done = True
+                    numbers.append(num)
                     break
-                if done:
-                    break
-            if done:
-                break
-        for i in range(len(line), 0, -1):
-            done = False
-            for (val, num) in enumerate(arr):
-                if line[:i].endswith(num):
-                    second = num
-                    done = True
-                    break
-                if done:
-                    break
-            if done:
-                break
+        first = numbers[0]
+        second = numbers[-1]
 
         total += int(first) * 10 + int(second)
     print(total)
@@ -47,32 +33,18 @@ def part2(lines):
     for line in lines:
         first = 0
         second = 0
+        numbers = []
         for i in range(len(line)):
-            done = False
-            for (val, num) in enumerate(totalArr):
+            for num in totalArr:
                 if line[i:].startswith(num):
-                    first = num
-                    done = True
-                    break
-                if done:
-                    break
-            if done:
-                break
-        for i in range(len(line), 0, -1):
-            done = False
-            for (val, num) in enumerate(totalArr):
-                if line[:i].endswith(num):
-                    second = num
-                    done = True
-                    break
-                if done:
-                    break
-            if done:
-                break
-        if first in arr2:
-            first = arr[arr2.index(first)]
-        if second in arr2:
-            second = arr[arr2.index(second)]
+                    if (num in arr2):
+                        numbers.append(arr2.index(num) + 1)
+                    else:
+                        numbers.append(num)
+
+        first = numbers[0]
+        second = numbers[-1]
+
         total += int(first) * 10 + int(second)
     print(total)
 
