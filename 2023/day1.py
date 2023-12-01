@@ -5,40 +5,75 @@ from tools import minWithIndex
 
 print(minWithIndex([100, 50, 25, 70, 300]))
 
+arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+arr2 = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+
 def part1(lines):
     total = 0
     for line in lines:
-        nums = re.findall(r'[0-9]{1}', line)
-        total += int(nums[0]+nums[-1])
+        first = 0
+        second = 0
+        for i in range(len(line)):
+            done = False
+            for (val, num) in enumerate(arr):
+                if line[i:].startswith(num):
+                    first = num
+                    done = True
+                    break
+                if done:
+                    break
+            if done:
+                break
+        for i in range(len(line), 0, -1):
+            done = False
+            for (val, num) in enumerate(arr):
+                if line[:i].endswith(num):
+                    second = num
+                    done = True
+                    break
+                if done:
+                    break
+            if done:
+                break
 
+        total += int(first) * 10 + int(second)
     print(total)
     pass
 
 
 def part2(lines):
     total = 0
-    nums = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    totalArr = arr + arr2
     for line in lines:
-        firstText = min([100] + [line.find(num) for num in nums if line.find(num) != -1])
-        firstDig = min([100] + [line.find(str(i)) for i in range(1, 10) if line.find(str(i)) != -1])
-
-        if (firstText < firstDig):
-            dig = [line[firstText:firstText+len(num)] == num for num in nums].index(True) + 1
-            firstDig = dig
-        else:
-            dig = int(line[firstDig])
-            firstDig = dig
-
-        secondText = max([0] + [line.rfind(num) for num in nums if line.rfind(num) != -1])
-        secondDig = max([0] + [line.rfind(str(i)) for i in range(1, 10) if line.rfind(str(i)) != -1])
-        if (secondText > secondDig):
-            dig = [line[secondText:secondText+len(num)] == num for num in nums].index(True) + 1
-            secondDig = dig
-        else:
-            dig = int(line[secondDig])
-            secondDig = dig
-        total += firstDig * 10 + secondDig
-
+        first = 0
+        second = 0
+        for i in range(len(line)):
+            done = False
+            for (val, num) in enumerate(totalArr):
+                if line[i:].startswith(num):
+                    first = num
+                    done = True
+                    break
+                if done:
+                    break
+            if done:
+                break
+        for i in range(len(line), 0, -1):
+            done = False
+            for (val, num) in enumerate(totalArr):
+                if line[:i].endswith(num):
+                    second = num
+                    done = True
+                    break
+                if done:
+                    break
+            if done:
+                break
+        if first in arr2:
+            first = arr[arr2.index(first)]
+        if second in arr2:
+            second = arr[arr2.index(second)]
+        total += int(first) * 10 + int(second)
     print(total)
 
 day = getday(__file__)
@@ -49,5 +84,5 @@ with open('{}/day1.txt'.format(path), 'r') as f:
 
     lines = aslist(lines)
 
-    part1(lines)
-    part2(lines)
+    part1(lines) # 54601
+    part2(lines) # 54078
