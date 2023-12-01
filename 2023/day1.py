@@ -2,7 +2,6 @@ from utils import aslist, splitlines, ingroups, getday, getpath
 import re
 
 def part1(lines):
-
     total = 0
     for line in lines:
         nums = re.findall(r'[0-9]{1}', line)
@@ -10,6 +9,7 @@ def part1(lines):
 
     print(total)
     pass
+
 
 def part2(lines):
     total = 0
@@ -37,10 +37,10 @@ def part2(lines):
 
     print(total)
 
-
 day = getday(__file__)
 path = getpath(__file__)
-with open('day1.txt', 'r') as f:
+print('path', path)
+with open('./{}/{}.txt'.format(path, day), 'r') as f:
 
     lines = f.readlines()
 

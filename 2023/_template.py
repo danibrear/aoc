@@ -9,9 +9,8 @@ def part2(lines):
         pass
 
 
-day = getday(__file__)
 path = getpath(__file__)
-with open('\{0\}/\{1\}.txt'.format(path, day), 'r') as f:
+with open('{}/*DAY*.txt'.format(path), 'r') as f:
 
     lines = f.readlines()
 

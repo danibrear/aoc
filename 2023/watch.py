@@ -1,21 +1,17 @@
-import sys
-import time
-import logging
-from watchdog.observers import Observer
-from watchdog.events import LoggingEventHandler
+from watchgod import watch
 
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO,
-                        format='%(asctime)s - %(message)s',
-                        datefmt='%Y-%m-%d %H:%M:%S')
-    path = sys.argv[1] if len(sys.argv) > 1 else '.'
-    event_handler = LoggingEventHandler()
-    observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
-    observer.start()
+executionCount = 1
+for changes in watch('./'):
     try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
+        file = list(changes)[0][1]
+        if file.startswith('./day') and file.endswith('.py'):
+            print('\n\n[{}]--------------------\nRunning'.format(executionCount), file)
+            exec(open(file).read())
+            executionCount += 1
+        elif file.startswith('./day') and file.endswith('.txt'):
+            pyfile = file.replace('.txt', '.py')
+            print('\n\n[{}]--------------------\nRunning'.format(executionCount), pyfile)
+            exec(open(pyfile).read())
+            executionCount += 1
+    except:
+        continue

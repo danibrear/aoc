@@ -5,6 +5,7 @@ with open('./_template.py', 'r') as f:
 
 for x in range(1, 32):
     day = 'day{0}'.format(x)
+    template.replace('*DAY*', str(x))
     if exists(day + '.py') or exists(day + '.txt'):
         print('skipping', day)
         continue

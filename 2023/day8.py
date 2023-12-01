@@ -11,7 +11,7 @@ def part2(lines):
 
 day = getday(__file__)
 path = getpath(__file__)
-with open('\{0\}/\{1\}.txt'.format(path, day), 'r') as f:
+with open('{}/{}.txt'.format(path, day), 'r') as f:
 
     lines = f.readlines()
 
