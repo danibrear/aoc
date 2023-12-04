@@ -1,12 +1,11 @@
 from utils import aslist, splitlines, ingroups, getday, getpath
 import re
-import math
 
 
 def part1(lines):
     total = 0
     for line in lines:
-        line = re.sub(r"\s+", " ", line)
+        line = re.sub(r"\s{2,}", " ", line)
         parts = line.split(" | ")
         winningNums = parts[0].split(": ")[1].split(" ")
         myNums = parts[1].split(" ")
@@ -18,7 +17,8 @@ def part1(lines):
         for num in myNums:
             if num in winningNums:
                 correct += 1
-        total += math.floor(2 ** (correct - 1))
+        if correct > 0:
+            total += 2 ** (correct - 1)
     print(total)
 
     return total
@@ -30,7 +30,7 @@ def part2(lines):
     for row, line in enumerate(lines):
         if row not in multiples:
             multiples[row] = 1
-        line = re.sub(r"\s+", " ", line)
+        line = re.sub(r"\s{2,}", " ", line)
         parts = line.split(" | ")
         winningNums = parts[0].split(": ")[1].split(" ")
         myNums = parts[1].split(" ")
@@ -65,5 +65,9 @@ with open("{}/day4.txt".format(path), "r") as f:
 
     lines = aslist(lines)
 
-    part1(lines)  # 21959
-    part2(lines)  # 5132675
+    p1 = part1(lines)  # 21959
+    p2 = part2(lines)  # 5132675
+
+    print("-" * 20)
+    assert p1 == 21959, "part 1 not right"
+    assert p2 == 5132675, "part 2 not right"
