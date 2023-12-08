@@ -30,6 +30,13 @@ def part1(lines):
     return step
 
 
+# For part 2 we don't need to try every step, we just need to find every
+# time each A reaches a Z. We then check for loops to make sure we don't
+# count the same step twice. Then we just need to find the lcm of all the
+# steps where each A ends on a Z. This puzzle luckily only has each A end
+# on a Z once.
+
+
 def part2(lines):
     instructions = lines[0]
     maps = {}
@@ -50,7 +57,6 @@ def part2(lines):
         inst = 0
         seen = set()
         find = a
-
         step = 0
 
         while "{}-{}".format(find, inst) not in seen:
