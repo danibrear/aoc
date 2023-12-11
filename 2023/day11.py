@@ -1,21 +1,30 @@
 from utils import aslist, splitlines, ingroups, getday, getpath
 
 
-def parts(lines):
-    y = [m for m, j in enumerate(lines) if "#" not in j]
-    x = [n for n, i in enumerate(lines[0]) if "#" not in (j[n] for j in lines)]
-    p = [(n, m) for m, j in enumerate(lines) for n, i in enumerate(j) if i == "#"]
-    k = sum(abs(n - u) + abs(m - v) for n, m in p for u, v in p) // 2
-    r = (
+def part1(lines):
+    rows = [i for i, line in enumerate(lines) if "#" not in line]
+    cols = [i for i, _ in enumerate(lines) if "#" not in [row[i] for row in lines]]
+
+    gals = [
+        (i, j) for i, line in enumerate(lines) for j, c in enumerate(line) if c == "#"
+    ]
+
+    extraspaces = (
         sum(
-            sum(n < t < u or u < t < n for t in x)
-            + sum(m < t < v or v < t < m for t in y)
-            for n, m in p
-            for u, v in p
+            [
+                sum([i < row < k or k < row < i for row in rows])
+                + sum([j < col < l or l < col < j for col in cols])
+                for i, j in gals
+                for k, l in gals
+            ]
         )
         // 2
     )
-    print(k + r, k + 999999 * r)
+
+    distances = (sum([abs(i - j) + abs(k - l) for i, k in gals for j, l in gals])) // 2
+
+    print("part1", extraspaces + distances)  # 9509330
+    print("part2", (extraspaces * 999_999) + distances)  # 635832237682
 
 
 path = getpath(__file__)
@@ -24,4 +33,4 @@ with open("{}/day11.txt".format(path), "r") as f:
 
     lines = aslist(lines)
 
-    parts(lines)
+    part1(lines)
