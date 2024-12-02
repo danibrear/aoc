@@ -2,7 +2,6 @@ from utils import aslist, splitlines, ingroups, getday, getpath
 
 def issafe(nums):
     inc = nums[0] < nums[1]
-    safe = True
     for i in range(0, len(nums)-1):
         if nums[i] == nums[i+1]:
             return [False, i]
